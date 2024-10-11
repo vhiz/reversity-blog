@@ -104,6 +104,10 @@ Note: Only the author of a post can update or delete it. This is enforced in the
 2. HTTP-only cookies (used for storing JWT)
 3. Helmet middleware for setting various HTTP headers
 4. MongoDB connection uses `useNewUrlParser` and `useUnifiedTopology` options for up-to-date and reliable connection method
+5. Rate limiting middleware to prevent abuse:
+   - Implemented using `express-rate-limit`
+   - Limits signup requests to 5 per 15 minutes from a single IP address
+   - Helps prevent brute force attacks and protects against potential DoS attacks
 
 ## Error Handling
 
