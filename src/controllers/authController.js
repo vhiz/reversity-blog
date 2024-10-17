@@ -11,7 +11,12 @@ export async function Signup(req, res) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const salt = await bcryptjs.genSalt(10);
+    // Validate password strength
+    if (password.length < 6) {
+      return res.status(400).json({ message: "Password should be at least 6 characters long" });
+    }
+
+    const salt = await bcryptjs.genSalt(14);
     const hashedPassword = await bcryptjs.hash(password, salt);
 
     const newUser = new User({
