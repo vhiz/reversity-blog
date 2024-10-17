@@ -4,9 +4,10 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
   message:
-    "You cant sign up again Too many requests from this IP, please try again after 15 mins",
+    "Too many request from this IP, please try again later.",
   standardHeaders: true,
   legacyHeaders: false,
+  skipSuccessfulRequests: false,
 });
 
 export default limiter;

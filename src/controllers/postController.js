@@ -15,7 +15,9 @@ export async function getAllPosts(req, res) {
 
     const posts = await Post.find(query)
       .sort({ createdAt: -1 })
-      .populate('author', 'name');
+      .populate('author', 'name')
+      .skip((page - 1) * limit)
+      .limit(parseInt(limit));
 
     res.status(200).json(posts);
   } catch (error) {
